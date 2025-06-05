@@ -21,9 +21,7 @@ A powerful Model Context Protocol (MCP) server that enables natural language int
 ## 🔐 Environment Setup
 
 1. Create a `.env` file in the project root:
-   ```bash
-   cp .env.example .env
-   ```
+  
 
 2. Edit the `.env` file with your API keys:
    ```bash
