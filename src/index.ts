@@ -184,9 +184,10 @@ async function createEmbeddings(texts: string[], config: EmbeddingProviderConfig
   switch (config.provider) {
     case 'openai': {
       const apiKey = process.env.OPENAI_API_KEY;
+      const baseURL = process.env.OPENAI_BASE_URL;
       if (!apiKey) throw new Error('OPENAI_API_KEY environment variable is required');
       const { OpenAI } = await import('openai');
-      const openai = new OpenAI({ apiKey });
+      const openai = new OpenAI({ apiKey , baseURL});
       
       for (const text of texts) {
         const chunks = chunkText(text, config.tokenLimit || 8000);
@@ -604,4 +605,4 @@ async function main() {
 main().catch((error) => {
   debugLogger.log("Fatal error in main():", error);
   process.exit(1);
-}); 
+});

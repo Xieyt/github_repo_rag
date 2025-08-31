@@ -137,10 +137,11 @@ async function createEmbeddings(texts, config = { provider: 'xenova' }) {
     switch (config.provider) {
         case 'openai': {
             const apiKey = process.env.OPENAI_API_KEY;
+            const baseURL = process.env.OPENAI_BASE_URL;
             if (!apiKey)
                 throw new Error('OPENAI_API_KEY environment variable is required');
             const { OpenAI } = await import('openai');
-            const openai = new OpenAI({ apiKey });
+            const openai = new OpenAI({ apiKey, baseURL });
             for (const text of texts) {
                 const chunks = chunkText(text, config.tokenLimit || 8000);
                 for (const chunk of chunks) {
